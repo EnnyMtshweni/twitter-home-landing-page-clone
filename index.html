@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>Twitter / X · Timeline</title>
+  <!-- Font Awesome (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- external CSS -->
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ===== NAV SECTION (left sidebar) ===== -->
+    <nav class="nav-sidebar" aria-label="Main navigation">
+      <div class="logo"><i class="fab fa-twitter"></i></div>
+      <a href="#" class="nav-item active"><i class="fas fa-home"></i><span>Home</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-hashtag"></i><span>Explore</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-bell"></i><span>Notifications</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-envelope"></i><span>Messages</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-bookmark"></i><span>Bookmarks</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-user"></i><span>Profile</span></a>
+      <button class="tweet-btn" aria-label="Tweet"><i class="fas fa-feather-alt"></i></button>
+    </nav>
+
+    <!-- ===== MAIN SECTION (timeline) ===== -->
+    <main class="main-timeline">
+      <div class="main-header">
+        <h2>Home</h2>
+        <i class="fas fa-sparkles"></i>
+      </div>
+
+      <!-- Tweet box -->
+      <div class="tweet-box">
+        <div class="avatar">K</div>
+        <div class="input-area">
+          <textarea id="tweetInput" placeholder="What is happening?!" rows="2"></textarea>
+          <div class="tweet-actions">
+            <div class="icons">
+              <i class="fas fa-image"></i>
+              <i class="fas fa-file-video"></i>
+              <i class="fas fa-poll"></i>
+              <i class="fas fa-smile"></i>
+            </div>
+            <button class="tweet-submit" id="tweetSubmit">Tweet</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feed / posts -->
+      <div class="feed" id="feedContainer">
+        <!-- posts injected by JS -->
+      </div>
+    </main>
+
+    <!-- ===== RIGHT SIDEBAR (hero / trending + premium) ===== -->
+    <aside class="right-sidebar">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search Twitter" />
+      </div>
+
+      <div class="trends">
+        <h3>What's happening</h3>
+        <div class="trend-item">
+          <div class="category">Trending in South Africa</div>
+          <div class="title">#durbanjuly2026</div>
+          <div class="count">140 posts</div>
+        </div>
+        <div class="trend-item">
+          <div class="category">Fashion &amp; beauty · Trending</div>
+          <div class="title">Balmain</div>
+          <div class="count">2,340 posts</div>
+        </div>
+        <div class="trend-item">
+          <div class="category">Trending in South Africa</div>
+          <div class="title">Saleng</div>
+          <div class="count">1,210 posts</div>
+        </div>
+        <div class="trend-item">
+          <div class="category">Trending in South Africa</div>
+          <div class="title">Neves</div>
+          <div class="count">980 posts</div>
+        </div>
+        <div class="trend-item" style="color:#1d9bf0; font-weight:400; border-bottom: none;">
+          Show more
+        </div>
+      </div>
+
+      <div class="premium-card">
+        <h4>Subscribe to Premium</h4>
+        <p>Get rid of ads, see your analytics, boost your replies and unlock 20+ features.</p>
+        <button>Subscribe</button>
+      </div>
+
+      <!-- tiny footer inside sidebar -->
+      <div style="margin-top: 24px; font-size: 12px; color: #71767b; display: flex; flex-wrap: wrap; gap: 8px;">
+        <span>Terms of Service</span> <span>Privacy Policy</span> <span>Cookie Policy</span>
+        <span>&copy; 2026 X Corp.</span>
+      </div>
+    </aside>
+  </div>
+
+  <!-- external JavaScript -->
+  <script src="./script.js"></script>
+</body>
+</html>
