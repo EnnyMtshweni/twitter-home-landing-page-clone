@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign up / FakeTwitter HQ</title>
+<link rel="stylesheet" href="./style.css">
+<style>
+  .login-wrap {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .login-brand {
+    background: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .login-brand svg { width: 220px; height: 220px; color: #fff; }
+  .login-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 10%;
+  }
+  .login-panel .mobile-logo { display: none; color: var(--blue); width: 40px; height: 40px; margin-bottom: 24px; }
+  .login-panel h1 { font-size: 31px; margin: 0 0 24px; }
+  .field {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 12px 0;
+    margin-bottom: 16px;
+    position: relative;
+    height: 56px;
+  }
+  .field label {
+    position: absolute;
+    left: 12px;
+    top: 16px;
+    color: var(--text-secondary);
+    font-size: 15px;
+    transition: 0.15s ease;
+    pointer-events: none;
+  }
+  .field input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 17px;
+    padding-top: 8px;
+  }
+  .field input:focus ~ label,
+  .field input:not(:placeholder-shown) ~ label {
+    top: 6px;
+    font-size: 12px;
+    color: var(--blue);
+  }
+  .login-submit {
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    border-radius: var(--radius-full);
+    padding: 14px 0;
+    font-weight: 700;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 8px;
+  }
+  .signup-line { margin-top: 24px; font-size: 15px; color: var(--text-secondary); }
+  .signup-line a { color: var(--blue); }
+  @media (max-width: 900px) {
+    .login-wrap { grid-template-columns: 1fr; }
+    .login-brand { display: none; }
+    .login-panel .mobile-logo { display: block; }
+    .login-panel { padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="login-wrap">
+  <div class="login-brand">
+    <img src="./images/download.png" alt="Twitter logo" style="width: 40px; height: 40px; object-fit: contain;">
+  </div>
+
+  <div class="login-panel">
+    <img class="mobile-logo" src="./images/download.png" alt="Twitter logo" style="width: 40px; height: 40px; object-fit: contain;">
+    <h1>Create your account</h1>
+
+    <form id="signupForm">
+      <div class="field">
+        <input type="text" id="nameInput" placeholder=" " autocomplete="off" required>
+        <label for="nameInput">Full name</label>
+      </div>
+      <div class="field">
+        <input type="email" id="emailInput" placeholder=" " autocomplete="off" required>
+        <label for="emailInput">Email</label>
+      </div>
+      <div class="field">
+        <input type="password" id="passInput" placeholder=" " autocomplete="off" required>
+        <label for="passInput">Password</label>
+      </div>
+      <button type="submit" class="login-submit">Sign up</button>
+    </form>
+
+    <p class="signup-line">Already have an account? <a href="./login.html">Log in</a></p>
+    <p class="signup-line"><a href="./index.html">← Back to demo timeline</a></p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('signupForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    localStorage.setItem('ftwitter_user', document.getElementById('emailInput').value.trim());
+    window.location.href = 'index.html';
+  });
+</script>
+</body>
+</html>

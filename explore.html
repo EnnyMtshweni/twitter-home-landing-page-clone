@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore /x timeline</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div class="app">
+  <aside class="left-sidebar">
+    <div>
+      <a href="./index.html" class="logo" aria-label="FakeTwitter HQ home">
+        <img src="./images/download.png" alt="Twitter logo" style="width: 28px; height: 28px; object-fit: contain;">
+      </a>
+      <nav class="nav-list" aria-label="Primary">
+        <a href="./index.html" class="nav-item" id="navHome"><span>Home</span></a>
+        <a href="./explore.html" class="nav-item active" id="navExplore"><span>Explore</span></a>
+        <a href="./index.html" class="nav-item" id="navNotifications"><span>Notifications</span><span class="badge">3</span></a>
+        <a href="./index.html" class="nav-item" id="navMessages"><span>Messages</span></a>
+        <a href="./index.html" class="nav-item" id="navBookmarks"><span>Bookmarks</span></a>
+        <a href="./login.html" class="nav-item" id="navProfile"><span>Profile</span></a>
+        <a href="./index.html" class="nav-item" id="navMore"><span>More</span></a>
+      </nav>
+      <button class="tweet-btn-main" data-open-modal>
+        <span class="full-label">Post</span>
+        <span class="icon-label" style="display:none;"></span>
+      </button>
+    </div>
+    <div>
+      <label class="theme-toggle">
+        <span style="display:flex;align-items:center;gap:10px;">
+          <span id="themeIcon"></span>
+          <span class="full-label">Dark mode</span>
+        </span>
+        <span class="switch">
+          <input type="checkbox" class="theme-checkbox">
+          <span class="slider"></span>
+        </span>
+      </label>
+      <a href="./index.html" class="profile-card">
+        <img src="https://api.placeholder.com/40x40/1d9bf0/ffffff?text=YOU" alt="You" class="avatar" style="width:40px;height:40px;border-radius:50%;object-fit:cover;">
+        <div class="names">
+          <div class="name">EnnyMtshweni</div>
+          <div class="handle">@EnnyMtshweni</div>
+        </div>
+      </a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="main-header">
+      <div class="search-box" style="flex:1;margin:8px 0;">
+        <span id="searchIcon"></span>
+        <input type="text" id="exploreSearch" placeholder="Search Twitter">
+      </div>
+    </header>
+
+    <div class="explore-tabs" id="exploreTabs">
+      <div class="explore-category active" data-cat="all">For you</div>
+      <div class="explore-category" data-cat="trending">Trending</div>
+      <div class="explore-category" data-cat="news">News</div>
+      <div class="explore-category" data-cat="sports">Sports</div>
+      <div class="explore-category" data-cat="entertainment">Entertainment</div>
+    </div>
+
+    <div class="trending-hero">
+      <h2>Trends for you</h2>
+    </div>
+    <div id="exploreTrends"></div>
+
+    <div class="trending-hero">
+      <h2>Who to follow</h2>
+    </div>
+    <div id="explorePeople"></div>
+  </main>
+
+  <aside class="right-sidebar">
+    <div class="widget" id="miniTrends"></div>
+    <div class="footer-links">
+      <a href="./index.html">Terms of Service</a>
+      <a href="./index.html">Privacy Policy</a>
+      <span>x</span>
+    </div>
+  </aside>
+</div>
+
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <a href="./index.html" id="mnHome"></a>
+  <a href="./explore.html" id="mnExplore"></a>
+  <a href="./index.html" id="mnNotif"></a>
+  <a href="./index.html" id="mnMail"></a>
+</nav>
+<button class="fab" data-open-modal aria-label="New Tweet" id="fabBtn"></button>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" id="modalCloseBtn"></button>
+    <p class="modal-reply-note hidden"></p>
+    <div class="composer" style="border-bottom:none;">
+      <img src="./images/MY IMAGE.jpg" alt="You" class="avatar" style="width:48px;height:48px;border-radius:50%;object-fit:cover;">
+      <div class="composer-body">
+        <textarea placeholder="What's happening?" rows="3"></textarea>
+        <div class="composer-footer">
+          <div class="composer-icons">
+            <button class="icon-btn"></button>
+            <button class="icon-btn"></button>
+            <button class="icon-btn"></button>
+            <button class="icon-btn"></button>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span class="char-counter" style="font-size:13px;color:var(--text-secondary);"></span>
+            <button class="composer-submit">Post</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./script.js"></script>
+<script>
+const EXPLORE_TRENDS = [
+  { location: "Trending in South Africa", tag: "#BuildInPublic", count: "24.5K posts", cat: "trending" },
+  { location: "Technology · Trending", tag: "#CursorAI", count: "88.2K posts", cat: "trending" },
+  { location: "Trending", tag: "#NetlifyDeploy", count: "12.1K posts", cat: "trending" },
+  { location: "Web Dev · Trending", tag: "#100DaysOfCode", count: "210K posts", cat: "trending" },
+  { location: "News · Trending", tag: "#LoadShedding", count: "45.3K posts", cat: "news" },
+  { location: "News · South Africa", tag: "#Budget2026", count: "9.8K posts", cat: "news" },
+  { location: "Sports · Trending", tag: "#Bafana", count: "67K posts", cat: "sports" },
+  { location: "Sports", tag: "#RugbyChampionship", count: "31K posts", cat: "sports" },
+  { location: "Entertainment · Trending", tag: "#SAMA2026", count: "18K posts", cat: "entertainment" },
+  { location: "Entertainment", tag: "#NewMusicFriday", count: "5.4K posts", cat: "entertainment" }
+];
+
+function renderExploreTrends(cat) {
+  const list = cat === "all" ? EXPLORE_TRENDS : EXPLORE_TRENDS.filter(t => t.cat === cat);
+  document.getElementById("exploreTrends").innerHTML = list.map(t => `
+    <div class="trend-item">
+      <span class="meta">${t.location}</span>
+      <span class="tag">${t.tag}</span>
+      <span class="count">${t.count}</span>
+    </div>`).join("") || `<p style="padding:16px;color:var(--text-secondary);">No trends in this category yet.</p>`;
+}
+
+function renderExplorePeople() {
+  document.getElementById("explorePeople").innerHTML = PEOPLE.map(p => `
+    <div class="follow-item" style="padding:12px 16px;">
+      ${avatarHTML(p, 44)}
+      <div class="info">
+        <div class="name">${p.name} ${p.verified ? '<span class="verified" style="display:inline-flex;width:14px;height:14px;vertical-align:-2px;">' + ICONS.verified + '</span>' : ''}</div>
+        <div class="handle">@${p.handle}</div>
+      </div>
+      <button class="follow-btn" data-handle="${p.handle}">Follow</button>
+    </div>`).join("");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderExploreTrends("all");
+  renderExplorePeople();
+
+  document.getElementById("miniTrends").innerHTML = "<h3>Trending now</h3>" +
+    EXPLORE_TRENDS.slice(0, 4).map(t => `
+      <div class="trend-item">
+        <span class="meta">${t.location}</span>
+        <span class="tag">${t.tag}</span>
+        <span class="count">${t.count}</span>
+      </div>`).join("");
+
+  document.querySelectorAll(".explore-category").forEach(cat => {
+    cat.addEventListener("click", () => {
+      document.querySelectorAll(".explore-category").forEach(c => c.classList.remove("active"));
+      cat.classList.add("active");
+      renderExploreTrends(cat.dataset.cat);
+    });
+  });
+
+  document.getElementById("exploreSearch").addEventListener("input", (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    const filtered = q
+      ? EXPLORE_TRENDS.filter(t => t.tag.toLowerCase().includes(q))
+      : EXPLORE_TRENDS.filter(t => document.querySelector(".explore-category.active").dataset.cat === "all" || t.cat === document.querySelector(".explore-category.active").dataset.cat);
+    document.getElementById("exploreTrends").innerHTML = filtered.map(t => `
+      <div class="trend-item">
+        <span class="meta">${t.location}</span>
+        <span class="tag">${t.tag}</span>
+        <span class="count">${t.count}</span>
+      </div>`).join("") || `<p style="padding:16px;color:var(--text-secondary);">No results for "${q}".</p>`;
+  });
+
+  document.querySelectorAll(".follow-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const following = btn.classList.toggle("following");
+      btn.textContent = following ? "Following" : "Follow";
+    });
+  });
+
+  document.getElementById('navHome').innerHTML = ICONS.home + '<span>Home</span>';
+  document.getElementById('navExplore').innerHTML = ICONS.explore + '<span>Explore</span>';
+  document.getElementById('navNotifications').innerHTML = ICONS.bell + '<span>Notifications</span><span class="badge">3</span>';
+  document.getElementById('navMessages').innerHTML = ICONS.mail + '<span>Messages</span>';
+  document.getElementById('navBookmarks').innerHTML = ICONS.bookmark + '<span>Bookmarks</span>';
+  document.getElementById('navProfile').innerHTML = ICONS.user + '<span>Profile</span>';
+  document.getElementById('navMore').innerHTML = ICONS.more + '<span>More</span>';
+  document.getElementById('searchIcon').innerHTML = ICONS.search;
+  document.getElementById('themeIcon').innerHTML = ICONS.moon;
+  document.getElementById('mnHome').innerHTML = ICONS.home;
+  document.getElementById('mnExplore').innerHTML = ICONS.explore;
+  document.getElementById('mnNotif').innerHTML = ICONS.bell;
+  document.getElementById('mnMail').innerHTML = ICONS.mail;
+  document.getElementById('fabBtn').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>';
+  document.querySelector('.tweet-btn-main .icon-label').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:24px;height:24px;"><path d="M12 5v14M5 12h14"/></svg>';
+  document.getElementById('modalCloseBtn').innerHTML = ICONS.x;
+  document.querySelectorAll('.modal .composer-icons .icon-btn')[0].innerHTML = ICONS.image;
+  document.querySelectorAll('.modal .composer-icons .icon-btn')[1].innerHTML = ICONS.gif;
+  document.querySelectorAll('.modal .composer-icons .icon-btn')[2].innerHTML = ICONS.poll;
+  document.querySelectorAll('.modal .composer-icons .icon-btn')[3].innerHTML = ICONS.emoji;
+});
+</script>
+</body>
+</html>
