@@ -1,0 +1,68 @@
+# FakeTwitter HQ 🕊️
+
+A responsive Twitter/X timeline clone. Vanilla HTML/CSS/JS — no build step, no
+dependencies, so it deploys to Netlify by drag-and-drop.
+
+## Files
+- `index.html` — Home timeline (sidebar, tweet composer, feed, trends, who to follow)
+- `explore.html` — Explore page with category filters and search
+- `login.html` — Demo login page (any email + 4+ char password logs you in)
+- `styles.css` — All styling, including the responsive breakpoints and dark theme
+- `script.js` — Tweet data, rendering, like/retweet/reply logic, dark mode, modal
+
+## How the marks map to what's here
+
+**Base Twitter Timeline Clone (40)** — `index.html` + `styles.css`: three-column
+layout (nav sidebar / feed / trends sidebar), tweet composer, tweet feed with
+avatars, verified badges, hashtags, action icons and counts. Responsive from a
+4K ultrawide down to a small Android screen (icon-only sidebar at ~1265px,
+sidebar collapses to a bottom nav + floating action button under 688px).
+
+**Custom feature — NO Cursor (15)** — **dark mode toggle**. The toggle, the
+`data-theme="dark"` CSS variable swap in `styles.css`, and the `initTheme()`
+function in `script.js` are simple enough to type by hand in one sitting.
+👉 Before you submit: re-type this feature yourself in your own editor,
+without AI assistance, so you can genuinely explain every line in your Loom
+video. Use what's here as a reference/spec, not as a paste job — that's the
+whole point of the mark allocation. A good way to do it: delete the
+`theme-toggle` CSS block and `initTheme()` function, then rebuild them from
+scratch using the class names already wired up in the HTML (`.theme-checkbox`,
+`data-theme`).
+
+**Custom features — WITH Cursor (10+10)**
+1. **Tweet compose modal** (`#modalOverlay` in the HTML, `openModal`/`closeModal`
+   in `script.js`) — clicking "Tweet" or the reply icon opens a centered modal
+   composer, matching the real X "what's happening" popup.
+2. **Explore page** (`explore.html`) — category tabs (Trending/News/Sports/
+   Entertainment), live search-as-you-type filtering, and a "who to follow"
+   grid.
+
+**Bonus already included beyond the brief:** a working login page with
+floating labels and validation, likes/retweets/posts persist across reloads
+via `localStorage`, and a toast notification system for feedback.
+
+## Running locally
+No build tools needed. Either:
+```
+open index.html
+```
+or serve it (recommended, avoids any file:// quirks):
+```
+python3 -m http.server 8000
+```
+then visit `http://localhost:8000`.
+
+## Deploying to Netlify
+1. Go to [app.netlify.com/drop](https://app.netlify.com/drop)
+2. Drag this whole folder onto the page
+3. Netlify gives you a live `.netlify.app` URL instantly — that's your
+   submission link
+(Or connect it as a GitHub repo in Netlify for auto-deploys on every push.)
+
+## Loom video checklist (5 min max)
+- [ ] Explain the dark mode toggle line-by-line (this is your proof of manual coding)
+- [ ] Show the tweet compose modal and how it's wired to both the sidebar
+      "Tweet" button and each tweet's reply icon
+- [ ] Show the Explore page: category filtering + live search
+- [ ] Show responsiveness: resize from desktop → tablet → mobile
+- [ ] Show the live Netlify URL working
